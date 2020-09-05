@@ -18,6 +18,6 @@ export default function Button(props) {
       onClick={props.onClick}
       disabled={props.disabled}
       
-      >{props.children}</button>;
-   </>;
+      >{props.children}</button>
+   </>
 }

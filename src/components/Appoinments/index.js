@@ -12,10 +12,13 @@ import Status from './Status';
 import useVisualMode from 'hooks/useVisualMode'
 
 
+// variables to switch to any mode
 const CONFIRM = "CONFIRM";
 const CREATE = "CREATE";
 const DELETE = "DELETE";
 const EDIT = "EDIT";
+const ERROR_DELETE = "ERROR_DELETE";
+const ERROR_SAVE = "ERROR_SAVE";
 const EMPTY = "EMPTY";
 const SAVING = "SAVING";
 const SHOW = "SHOW";
@@ -23,9 +26,12 @@ const SHOW = "SHOW";
 
 
 
+
+
 export default function Appointment(props) {
   const {interview, interviewers=[], bookInterview, id, cancelInterview, editInterview} = props
-
+ 
+  // unpack functions to use to navigate over modes
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
@@ -66,9 +72,7 @@ const confirmDelete = () => {
 
   return (
     <article className="apppoinments">
-      <Header
-        time={props.time}
-      />
+      <Header time={props.time}/>
 
       {mode === EMPTY && <Empty onAdd={()=> transition(CREATE)} />}
       {mode === CREATE && (
@@ -81,6 +85,7 @@ const confirmDelete = () => {
       {mode === SHOW && <Show 
         student={interview.student} 
         interviewer={interview.interviewer.name}
+        onEdit={() => transition(EDIT)}
         onDelete={confirmBox}
         />
       }
@@ -91,6 +96,14 @@ const confirmDelete = () => {
         onCancel={back}
         onConfirm={confirmDelete}
         />}
+
+      {mode === EDIT && <Form 
+        name={interview.student}
+        interviewers={interviewers}
+        interviewer={interview.interviewer.id}
+        onSave={save}
+        onCancel={back}
+      />}
 
     </article>
   )
