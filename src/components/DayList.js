@@ -27,5 +27,3 @@ export default function DayList(props) {
 
   
 };
-
-// event=> setInterviewer(interviewerTeacher.id
