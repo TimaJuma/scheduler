@@ -24,6 +24,5 @@ export default function DayList(props) {
     {DayListData}
     </ul>
   )
-
-  
+ 
 };

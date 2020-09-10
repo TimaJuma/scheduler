@@ -12,7 +12,7 @@ import Status from './Status';
 import useVisualMode from 'hooks/useVisualMode'
 
 
-// variables to switch to any mode
+// identifiers to switch to any mode
 const CONFIRM = "CONFIRM";
 const CREATE = "CREATE";
 const DELETE = "DELETE";
@@ -31,42 +31,42 @@ const SHOW = "SHOW";
 export default function Appointment(props) {
   const {interview, interviewers=[], bookInterview, id, cancelInterview, editInterview} = props
  
-  // unpack functions to use to navigate over modes
+  // destruct functions to use to navigate over modes
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
   );
 
-
+  // ACTION FUNCTIONS
+    // #1
   const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer
     };
     
-    // if (interview && name) {
+    if (interview && name) {
       transition(SAVING);
       
       bookInterview(id, interview)
        .then(()=> transition(SHOW))
        .catch(() => transition(ERROR_SAVE, true));
-    // }  
+    }  
   }
    
+  // # 2
+  const confirmBox = (e) => {
+    e.preventDefault();
+    transition(CONFIRM);
+  }
 
-// confirm message Box
-const confirmBox = (e) => {
-  e.preventDefault();
-  transition(CONFIRM);
-}
-
-const confirmDelete = () => {
-  transition(DELETE, true);
-  
-  cancelInterview(id)
-    .then(()=> transition(EMPTY))
-    .catch(() => transition(ERROR_DELETE, true))
-      
-}
+  // # 3
+  const confirmDelete = () => {
+    transition(DELETE, true);
+    
+    cancelInterview(id)
+      .then(()=> transition(EMPTY))
+      .catch(() => transition(ERROR_DELETE, true))      
+  }
 
 
   return (

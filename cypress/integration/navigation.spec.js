@@ -5,7 +5,7 @@ describe("Navigation", () => {
 
   it("should navigate to Tuesday", () => {
     cy.visit("/");
-  })
+  });
 
   it("sth", () => {
     cy.contains("[data-testid=day]", "Tuesday")

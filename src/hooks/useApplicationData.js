@@ -12,6 +12,8 @@ export const useApplicationData = () => {
     interviewers: []
   });
 
+
+
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -29,21 +31,6 @@ export const useApplicationData = () => {
   }
 
 
-  // const bookInterview = (id, interview) => {
-  //   const appointment = {
-  //     ...state.appointments[id],
-  //     interview: { ...interview}
-  //   };
-
-  //   const appointments = {
-  //     ...state.appointments,
-  //     [id]: appointment
-  //   };
-
-  
-  //   return axios.put(`api/appointments/${id}`, {interview})
-  //     .then(res=> {setState({...state, appointments });})
-  // }
 
   const cancelInterview = (id) => {
     return axios.delete(`/api/appointments/${id}`, )
@@ -56,7 +43,7 @@ export const useApplicationData = () => {
 
   const setDay = day => setState({ ...state, day });
 
-
+  
   useEffect(() => {
 
     Promise.all([

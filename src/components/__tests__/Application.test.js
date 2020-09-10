@@ -73,7 +73,6 @@ describe("Application", ()=> {
 
     // expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
     
-    // console.log(prettyDOM(container))
   })
 
 
