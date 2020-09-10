@@ -12,38 +12,38 @@ export const useApplicationData = () => {
     interviewers: []
   });
 
-  // const bookInterview = (id, interview) => {
-  //   const appointment = {
-  //     ...state.appointments[id],
-  //     interview: { ...interview }
-  //   };
-  //   const appointments = {
-  //     ...state.appointments,
-  //     [id]: appointment
-  //   };
-
-  //   return axios.put(`/api/appointments/${id}`, appointment)
-  //   .then(() => {setState({...state, appointments});})
-  //   .then(() => axios.get("/api/days"))
-  //   .then((res) =>setState(prev => ({ ...prev, days: res.data})));
-  // }
-
-
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview}
+      interview: { ...interview }
     };
-
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
 
-  
-    return axios.put(`api/appointments/${id}`, {interview})
-      .then(res=> {setState({...state, appointments });})
+    return axios.put(`/api/appointments/${id}`, appointment)
+    .then(() => {setState({...state, appointments});})
+    .then(() => axios.get("/api/days"))
+    .then((res) =>setState(prev => ({ ...prev, days: res.data})));
   }
+
+
+  // const bookInterview = (id, interview) => {
+  //   const appointment = {
+  //     ...state.appointments[id],
+  //     interview: { ...interview}
+  //   };
+
+  //   const appointments = {
+  //     ...state.appointments,
+  //     [id]: appointment
+  //   };
+
+  
+  //   return axios.put(`api/appointments/${id}`, {interview})
+  //     .then(res=> {setState({...state, appointments });})
+  // }
 
   const cancelInterview = (id) => {
     return axios.delete(`/api/appointments/${id}`, )

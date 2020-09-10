@@ -42,39 +42,41 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    if (interview && name) {
+    
+    // if (interview && name) {
       transition(SAVING);
+      
       bookInterview(id, interview)
        .then(()=> transition(SHOW))
-       .catch(error => transition(ERROR_SAVE, true));
-    }  
+       .catch(() => transition(ERROR_SAVE, true));
+    // }  
   }
    
 
 // confirm message Box
-const confirmBox = () => {
+const confirmBox = (e) => {
+  e.preventDefault();
   transition(CONFIRM);
 }
 
 const confirmDelete = () => {
   transition(DELETE, true);
-  // delete
+  
   cancelInterview(id)
     .then(()=> transition(EMPTY))
     .catch(() => transition(ERROR_DELETE, true))
       
-  
 }
 
 
   return (
-    <article className="apppoinments">
+    <article className="apppoinments" data-testid="appointment">
       <Header time={props.time}/>
 
       {mode === EMPTY && <Empty onAdd={()=> transition(CREATE)} />}
       {mode === CREATE && (
         <Form
-          onCancel={() => back()}
+          onCancel={back}
           interviewers={interviewers}
           onSave={save}
         />
@@ -88,10 +90,10 @@ const confirmDelete = () => {
       }
 
 
-      {mode ===SAVING && <Status message={'Saving'}/>}
-      {mode ===ERROR_SAVE && <Error message="Could not save an appoitment" onClose={() => back()} />}
-      {mode ===DELETE && <Status message={'Deleting'}/>} 
-      {mode ===ERROR_DELETE && <Error message="Could not delete an appoitment" onClose={() => back()} />}
+      {mode === SAVING && <Status message={"Saving"}/>}
+      {mode === ERROR_SAVE && <Error message="Could not save an appoitment" onClose={back} />}
+      {mode === DELETE && <Status message={"Deleting"}/>} 
+      {mode === ERROR_DELETE && <Error message="Could not delete an appoitment" onClose={back} />}
 
       {mode === CONFIRM && <Confirm 
         message={'Are you sure you would like to delete it?'}
