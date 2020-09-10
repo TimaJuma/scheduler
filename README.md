@@ -1,10 +1,11 @@
 # Interview Scheduler
 
-** This is a FullStack APP with Front END written in React **
+**This is a FullStack APP with Front END written in React**
+
 This APP allows you to manage your appointments:
-  - Create by selecting appropriate date
-  - Edit
-  - Delete 
+  - Create appointment by selecting appropriate date
+  - Edit it
+  - Delete it
 
 
 ## Setup
@@ -31,28 +32,28 @@ npm run storybook
 
 ## The views of Final implementation
 
-#### View all the available appointments with remaining spots on each day
+#### 1. View all the available appointments with remaining spots on each day
 
 !["view appointments"](docs/1_start_view.png)
 
 
-#### Create a new appointment
+#### 2. Create a new appointment
 
 !["view appointments"](docs/2_create.png)
 
 
-#### Created an appointment and spots remaining updated accordingly
+#### 3. Created an appointment and spots remaining updated accordingly
 
 !["view appointments"](docs/3_created.png)
 
-#### Edit the appointment
+#### 4. Edit the appointment
 
 !["view appointments"](docs/4_edited.png)
 
-#### Delete confirmation component rendered
+#### 5. Delete confirmation component rendered
 
 !["view appointments"](docs/5_delete.png)
 
-#### Deleted and spots remaining updated accordingly
+#### 6. Deleted and spots remaining updated accordingly
 
 !["view appointments"](docs/5_deleted.png)
