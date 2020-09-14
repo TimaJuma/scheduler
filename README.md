@@ -3,10 +3,10 @@
 **This is a FullStack APP with Front END written in React**
 
 This APP allows you to manage your appointments:
-  - Create appointment by selecting appropriate date
-  - Edit it
-  - Delete it
 
+- Create appointment by selecting appropriate date
+- Edit it
+- Delete it
 
 ## Setup
 
@@ -36,11 +36,9 @@ npm run storybook
 
 !["view appointments"](docs/1_start_view.png)
 
-
 #### 2. Create a new appointment
 
 !["view appointments"](docs/2_create.png)
-
 
 #### 3. Created an appointment and spots remaining updated accordingly
 
@@ -56,4 +54,4 @@ npm run storybook
 
 #### 6. Deleted and spots remaining updated accordingly
 
-!["view appointments"](docs/5_deleted.png)
+!["view appointments"](docs/6_deleted.png)
