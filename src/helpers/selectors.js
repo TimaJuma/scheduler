@@ -1,18 +1,14 @@
 // # 1
 const getAppointmentsForDay = (state, day) => {
-  const finalArr = [];
-  for (const matchDay of state.days) {
-    if (day === matchDay.name) {
-      for (let appointment of matchDay.appointments) {
-        for (const [key, value] of Object.entries(state.appointments)) {
-          if (appointment === value.id) {
-            finalArr.push(value);
-          }
-        }
-      }
-    }
-  }
-  return finalArr;
+  const appointmentsId = state.days
+    .filter((e) => e.name === day)
+    .map((e) => e.appointments)
+    .reduce((acc, val) => acc.concat(val), []);
+  const appointment = [];
+  appointmentsId.forEach((e) => {
+    appointment.push(state.appointments[e]);
+  });
+  return appointment;
 };
 
 // # 2
@@ -27,19 +23,15 @@ const getInterview = (state, interview) => {
 
 // # 3
 const getInterviewersForDay = (state, day) => {
-  const finalArr = [];
-  for (const matchDay of state.days) {
-    if (day === matchDay.name) {
-      for (let interviewer of matchDay.interviewers) {
-        for (const [key, value] of Object.entries(state.interviewers)) {
-          if (interviewer === value.id) {
-            finalArr.push(value);
-          }
-        }
-      }
-    }
-  }
-  return finalArr;
+  const interviewersId = state.days
+    .filter((e) => e.name === day)
+    .map((e) => e.interviewers)
+    .reduce((acc, val) => acc.concat(val), []);
+  const interviewers = [];
+  interviewersId.forEach((e) => {
+    interviewers.push(state.interviewers[e]);
+  });
+  return interviewers;
 };
 
 export { getInterviewersForDay, getInterview, getAppointmentsForDay };
